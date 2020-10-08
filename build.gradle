@@ -36,6 +36,9 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'io.quarkus:quarkus-arc'
 
+    implementation "net.dankito.utils:java-utils:$javaUtilsVersion"
+    implementation "net.dankito.utils:favicon-finder:$faviconFinderVersion"
+
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 }
