@@ -8,6 +8,7 @@ import javax.ws.rs.Path
 import javax.ws.rs.Produces
 import javax.ws.rs.QueryParam
 import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
 
 
 @Path("/favicons")
@@ -20,10 +21,14 @@ open class FaviconFinderResource {
     @Produces(MediaType.APPLICATION_JSON)
     fun findFavicons(
             @QueryParam("url") url: String
-    ): List<Favicon> {
+    ): Response {
         val absoluteUrl = makeUrlAbsolute(url)
 
-        return faviconFinder.extractFavicons(absoluteUrl)
+        val favicons = faviconFinder.extractFavicons(absoluteUrl)
+
+        return Response.ok(favicons)
+                .header("Access-Control-Allow-Origin", "*")
+                .build()
     }
 
     protected open fun makeUrlAbsolute(url: String): String {
