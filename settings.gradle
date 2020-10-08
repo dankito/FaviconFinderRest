@@ -8,4 +8,3 @@ pluginManagement {
         id "io.quarkus" version "$quarkusVersion"
     }
 }
-rootProject.name='favicon-finder-rest'
