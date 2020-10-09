@@ -1,18 +1,22 @@
 package net.dankito.utils.favicon.rest
 
-import net.dankito.utils.favicon.Favicon
 import net.dankito.utils.favicon.FaviconFinder
 import net.dankito.utils.web.client.OkHttpWebClient
-import javax.ws.rs.GET
-import javax.ws.rs.Path
-import javax.ws.rs.Produces
-import javax.ws.rs.QueryParam
+import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 
 @Path("/favicons")
-open class FaviconFinderResource {
+class FaviconFinderResource {
+
+    companion object {
+
+        const val SortedBySizeAscending="size_ascending"
+
+        const val SortedBySizeDescending="size_descending"
+
+    }
 
     protected val faviconFinder = FaviconFinder(OkHttpWebClient())
 
@@ -20,13 +24,21 @@ open class FaviconFinderResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     fun findFavicons(
-            @QueryParam("url") url: String
+            @QueryParam("url") url: String,
+            @QueryParam("sortedBy") @DefaultValue(SortedBySizeDescending) sortedBy: String
     ): Response {
         val absoluteUrl = makeUrlAbsolute(url)
 
         val favicons = faviconFinder.extractFavicons(absoluteUrl)
 
-        return Response.ok(favicons)
+        val faviconsSorted = if (sortedBy == SortedBySizeDescending) {
+            favicons.sortedByDescending { it.size }
+        }
+        else {
+            favicons.sortedBy { it.size }
+        }
+
+        return Response.ok(faviconsSorted)
                 .header("Access-Control-Allow-Origin", "*")
                 .build()
     }
