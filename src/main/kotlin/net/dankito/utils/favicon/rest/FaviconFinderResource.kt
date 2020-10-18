@@ -1,7 +1,6 @@
 package net.dankito.utils.favicon.rest
 
 import net.dankito.utils.favicon.FaviconFinder
-import net.dankito.utils.web.client.OkHttpWebClient
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
@@ -18,7 +17,7 @@ class FaviconFinderResource {
 
     }
 
-    protected val faviconFinder = FaviconFinder(OkHttpWebClient())
+    protected val faviconFinder = FaviconFinder()
 
 
     @GET
@@ -37,6 +36,8 @@ class FaviconFinderResource {
         else {
             favicons.sortedBy { it.size }
         }
+
+//        val mapped = faviconsSorted.map { FaviconDto(it.url, it.iconType.name, it.size.toString(), it.type) }
 
         return Response.ok(faviconsSorted)
                 .header("Access-Control-Allow-Origin", "*")
