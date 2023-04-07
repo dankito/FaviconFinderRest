@@ -10,11 +10,11 @@ open class FaviconDto(
     open val url: String,
     open val iconType: FaviconType,
     open val size: SizeDto? = null,
-    open val type: String? = null
+    open val imageMimeType: String? = null
 )  {
 
     constructor() : this("", FaviconType.Icon)
 
-    constructor(favicon: Favicon) : this(favicon.url, favicon.iconType, favicon.size?.let { SizeDto(it) }, favicon.type)
+    constructor(favicon: Favicon) : this(favicon.url, favicon.iconType, favicon.size?.let { SizeDto(it) }, favicon.imageMimeType)
 
 }
