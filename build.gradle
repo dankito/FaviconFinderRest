@@ -50,3 +50,8 @@ allOpen {
     annotation("javax.enterprise.context.ApplicationScoped")
     annotation("io.quarkus.test.junit.QuarkusTest")
 }
+
+
+test {
+    useJUnitPlatform()
+}
