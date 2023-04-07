@@ -2,6 +2,7 @@ package net.dankito.utils.favicon.rest
 
 import net.dankito.utils.favicon.FaviconFinder
 import net.dankito.utils.favicon.rest.model.FaviconDto
+import net.dankito.utils.favicon.rest.model.SizeSorting
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
@@ -12,10 +13,6 @@ class FaviconFinderResource {
 
     companion object {
 
-        const val SortedBySizeAscending="size_ascending"
-
-        const val SortedBySizeDescending="size_descending"
-
     }
 
     protected val faviconFinder = FaviconFinder()
@@ -25,13 +22,13 @@ class FaviconFinderResource {
     @Produces(MediaType.APPLICATION_JSON)
     fun findFavicons(
             @QueryParam("url") url: String,
-            @QueryParam("sortedBy") @DefaultValue(SortedBySizeDescending) sortedBy: String
+            @QueryParam("sortedBy") @DefaultValue("Descending") sortedBy: SizeSorting
     ): Response {
         val absoluteUrl = makeUrlAbsolute(url)
 
         val favicons = faviconFinder.extractFavicons(absoluteUrl)
 
-        val faviconsSorted = if (sortedBy == SortedBySizeDescending) {
+        val faviconsSorted = if (sortedBy == SizeSorting.Descending) {
             favicons.sortedByDescending { it.size }
         }
         else {
