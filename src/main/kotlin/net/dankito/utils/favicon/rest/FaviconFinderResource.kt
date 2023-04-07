@@ -12,7 +12,8 @@ import javax.ws.rs.core.Response
 class FaviconFinderResource {
 
     companion object {
-
+        private const val UrlParameterName = "url"
+        private const val SortedByParameterName = "sortedBy"
     }
 
     protected val faviconFinder = FaviconFinder()
@@ -21,8 +22,8 @@ class FaviconFinderResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     fun findFavicons(
-            @QueryParam("url") url: String,
-            @QueryParam("sortedBy") @DefaultValue("Descending") sortedBy: SizeSorting
+        @QueryParam(UrlParameterName) url: String,
+        @QueryParam(SortedByParameterName) @DefaultValue("Descending") sortedBy: SizeSorting
     ): Response {
         val absoluteUrl = makeUrlAbsolute(url)
 
