@@ -37,7 +37,6 @@ dependencies {
     implementation 'io.quarkus:quarkus-resteasy-jackson'
     implementation 'io.quarkus:quarkus-smallrye-openapi'
 
-    implementation "net.dankito.utils:java-utils:$javaUtilsVersion"
     implementation "net.dankito.utils:favicon-finder:$faviconFinderVersion"
 
     testImplementation 'io.quarkus:quarkus-junit5'
