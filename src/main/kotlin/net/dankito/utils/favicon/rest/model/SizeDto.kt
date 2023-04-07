@@ -1,7 +1,7 @@
 package net.dankito.utils.favicon.rest.model
 
 import io.quarkus.runtime.annotations.RegisterForReflection
-import net.dankito.utils.Size
+import net.dankito.utils.favicon.Size
 
 
 @RegisterForReflection // needed in native applications
