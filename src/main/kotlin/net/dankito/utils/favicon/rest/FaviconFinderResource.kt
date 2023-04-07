@@ -3,6 +3,7 @@ package net.dankito.utils.favicon.rest
 import net.dankito.utils.favicon.rest.model.FaviconDto
 import net.dankito.utils.favicon.rest.model.SizeSorting
 import net.dankito.utils.favicon.rest.service.FaviconFinderService
+import net.dankito.utils.favicon.rest.service.HtmlService
 import javax.inject.Inject
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
@@ -11,8 +12,8 @@ import javax.ws.rs.core.Response
 
 @Path("/favicon-finder")
 class FaviconFinderResource(
-    @Inject
-    private val service: FaviconFinderService
+    @Inject private val service: FaviconFinderService,
+    @Inject private val htmlService: HtmlService
 ) {
 
     companion object {
@@ -34,6 +35,17 @@ class FaviconFinderResource(
         return Response.ok(mapped)
                 .header("Access-Control-Allow-Origin", "*")
                 .build()
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    fun findFaviconsHtml(
+        @QueryParam(UrlParameterName) url: String,
+        @QueryParam(SortedByParameterName) @DefaultValue("Descending") sortedBy: SizeSorting
+    ): String {
+        val faviconsSorted = service.findFavicons(url, sortedBy)
+
+        return htmlService.createHtmlPage(url, faviconsSorted)
     }
 
 }
