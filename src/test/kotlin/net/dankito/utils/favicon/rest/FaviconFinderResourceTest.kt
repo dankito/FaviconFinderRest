@@ -11,7 +11,7 @@ class FaviconFinderResourceTest {
   @Test
   fun findFavicons() {
     RestAssured.given()
-      .`when`().get("/favicons-finder?url=codinux.net")
+      .`when`().get("/favicon-finder?url=codinux.net")
       .then()
         .statusCode(200)
         .body(containsString("https://www.codinux.net"))
