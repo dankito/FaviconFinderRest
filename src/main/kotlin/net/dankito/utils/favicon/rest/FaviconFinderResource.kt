@@ -11,15 +11,16 @@ import javax.ws.rs.core.Response
 
 
 @Path("/favicon-finder")
-class FaviconFinderResource(
-    @Inject private val service: FaviconFinderService,
-    @Inject private val htmlService: HtmlService
-) {
+class FaviconFinderResource {
 
     companion object {
         private const val UrlParameterName = "url"
         private const val SortedByParameterName = "sortedBy"
     }
+
+    @Inject internal lateinit var service: FaviconFinderService
+
+    @Inject internal lateinit var htmlService: HtmlService
 
 
     @GET
