@@ -1,13 +1,13 @@
 package net.dankito.utils.favicon.rest
 
+import jakarta.inject.Inject
+import jakarta.ws.rs.*
+import jakarta.ws.rs.core.MediaType
+import jakarta.ws.rs.core.Response
 import net.dankito.utils.favicon.rest.model.FaviconDto
 import net.dankito.utils.favicon.rest.model.SizeSorting
 import net.dankito.utils.favicon.rest.service.FaviconFinderService
 import net.dankito.utils.favicon.rest.service.HtmlService
-import javax.inject.Inject
-import javax.ws.rs.*
-import javax.ws.rs.core.MediaType
-import javax.ws.rs.core.Response
 
 
 @Path("/favicon-finder")
@@ -18,7 +18,8 @@ class FaviconFinderResource {
         private const val SortedByParameterName = "sortedBy"
     }
 
-    @Inject internal lateinit var service: FaviconFinderService
+    @Inject
+    internal lateinit var service: FaviconFinderService
 
     @Inject internal lateinit var htmlService: HtmlService
 

@@ -34,8 +34,8 @@ repositories {
 configurations.all {
     resolutionStrategy {
         // Quarkus overrides OkHttp version 4.x with incompatible OkHttp version 3.x
-        force("com.squareup.okhttp3:okhttp:4.10.0")
-        force("com.squareup.okio:okio:3.0.0")
+        force("com.squareup.okhttp3:okhttp:4.11.0")
+        force("com.squareup.okio:okio:3.4.0")
     }
 }
 
@@ -61,8 +61,8 @@ dependencies {
 
 
 allOpen {
-    annotation("javax.ws.rs.Path")
-    annotation("javax.enterprise.context.ApplicationScoped")
+    annotation("jakarta.ws.rs.Path")
+    annotation("jakarta.enterprise.context.ApplicationScoped")
     annotation("io.quarkus.test.junit.QuarkusTest")
 }
 

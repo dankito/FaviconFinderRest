@@ -1,7 +1,7 @@
 package net.dankito.utils.favicon.rest.service
 
+import jakarta.enterprise.context.ApplicationScoped
 import net.dankito.utils.favicon.Favicon
-import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class HtmlService {
