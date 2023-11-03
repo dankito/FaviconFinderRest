@@ -1,6 +1,6 @@
 package net.dankito.utils.favicon.rest.service
 
-import net.codinux.log.LoggerFactory.logger
+import net.codinux.log.logger
 import net.dankito.utils.favicon.Favicon
 import net.dankito.utils.favicon.FaviconFinder
 import net.dankito.utils.favicon.rest.model.SizeSorting
