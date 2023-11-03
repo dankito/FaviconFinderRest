@@ -51,7 +51,8 @@ dependencies {
 
     implementation "net.dankito.utils:favicon-finder:$faviconFinderVersion"
 
-    implementation("net.codinux.log:quarkus-loki-logger:0.5.1-SNAPSHOT")
+    implementation("net.codinux.log:quarkus-loki-logger:$lokiLoggerVersion")
+    implementation("net.codinux.log.kubernetes:codinux-kubernetes-info-retriever:$lokiLoggerVersion")
     implementation("net.codinux.log:kmp-log:1.1.2")
 
     testImplementation 'io.quarkus:quarkus-junit5'
