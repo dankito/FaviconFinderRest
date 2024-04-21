@@ -1,0 +1,64 @@
+plugins {
+    id("org.jetbrains.kotlin.jvm")
+    id("org.jetbrains.kotlin.plugin.allopen")
+
+    id("io.quarkus")
+}
+
+
+group = "net.dankito.utils.favicon.rest"
+version = "1.0.0-SNAPSHOT"
+
+
+
+kotlin {
+    jvmToolchain(17)
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+
+val quarkusVersion: String by project
+val faviconFinderVersion: String by project
+val lokiLoggerVersion: String by project
+
+dependencies {
+    implementation(enforcedPlatform("io.quarkus:quarkus-universe-bom:$quarkusVersion"))
+    implementation("io.quarkus:quarkus-kotlin")
+    implementation("io.quarkus:quarkus-resteasy")
+    implementation("io.quarkus:quarkus-resteasy-jackson")
+    implementation("io.quarkus:quarkus-smallrye-openapi")
+    implementation("io.quarkus:quarkus-smallrye-health")
+    implementation("io.quarkus:quarkus-micrometer")
+    implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
+
+    implementation("net.dankito.utils:favicon-finder:$faviconFinderVersion")
+
+    implementation("net.codinux.log:quarkus-loki-logger:$lokiLoggerVersion")
+    implementation("net.codinux.log.kubernetes:codinux-kubernetes-info-retriever:$lokiLoggerVersion")
+    implementation("net.codinux.log:kmp-log:1.1.3")
+
+    testImplementation("io.quarkus:quarkus-junit5")
+    testImplementation("io.rest-assured:rest-assured")
+}
+
+
+allOpen {
+    annotation("jakarta.ws.rs.Path")
+    annotation("jakarta.enterprise.context.ApplicationScoped")
+    annotation("io.quarkus.test.junit.QuarkusTest")
+}
+
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlinOptions.javaParameters = true
+}
+
+tasks.test {
+    useJUnitPlatform()
+    systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+}
