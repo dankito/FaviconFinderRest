@@ -21,7 +21,7 @@
 # docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/favicon-finder-rest-jvm
 #
 ###
-FROM registry.access.redhat.com/ubi8/openjdk-11:1.14
+FROM registry.access.redhat.com/ubi8/openjdk-17:1.19
 
 ENV LANGUAGE='en_US:en'
 
@@ -34,6 +34,6 @@ COPY --chown=185 build/quarkus-app/quarkus/ /deployments/quarkus/
 
 EXPOSE 8080
 USER 185
-ENV AB_JOLOKIA_OFF=""
+ENV AB_JOLOKIA_OFF="true"
 ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
