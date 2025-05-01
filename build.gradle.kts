@@ -37,7 +37,7 @@ dependencies {
 
     implementation("net.dankito.utils:favicon-finder:$faviconFinderVersion")
 
-    implementation("net.codinux.log:quarkus-loki-logger:$lokiLoggerVersion")
+    implementation("net.codinux.log:quarkus-loki-log-appender:$lokiLoggerVersion")
     implementation("net.codinux.log.kubernetes:codinux-kubernetes-info-retriever:$lokiLoggerVersion")
     implementation("net.codinux.log:kmp-log:1.1.3")
 
