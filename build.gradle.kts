@@ -27,13 +27,14 @@ val klfVersion: String by project
 val lokiLoggerVersion: String by project
 
 dependencies {
-    implementation(enforcedPlatform("io.quarkus:quarkus-universe-bom:$quarkusVersion"))
+    implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:$quarkusVersion"))
     implementation("io.quarkus:quarkus-kotlin")
+
     implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy-jackson")
+
     implementation("io.quarkus:quarkus-smallrye-openapi")
     implementation("io.quarkus:quarkus-smallrye-health")
-    implementation("io.quarkus:quarkus-micrometer")
     implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
 
     implementation("net.dankito.utils:favicon-finder:$faviconFinderVersion")
@@ -41,6 +42,7 @@ dependencies {
     implementation("net.codinux.log:klf:${klfVersion}")
     implementation("net.codinux.log:quarkus-loki-log-appender:$lokiLoggerVersion")
     implementation("net.codinux.log.kubernetes:codinux-kubernetes-info-retriever:$lokiLoggerVersion")
+
 
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
