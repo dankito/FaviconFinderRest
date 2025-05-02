@@ -21,7 +21,7 @@
 # docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/favicon-finder-rest-jvm
 #
 ###
-FROM registry.access.redhat.com/ubi8/openjdk-17:1.19
+FROM registry.access.redhat.com/ubi9/openjdk-17:1.22
 
 ENV LANGUAGE='en_US:en'
 
