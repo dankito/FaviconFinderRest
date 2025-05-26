@@ -24,6 +24,7 @@ repositories {
 val quarkusVersion: String by project
 val faviconFinderVersion: String by project
 val klfVersion: String by project
+val logFormatterVersion: String by project
 val lokiLoggerVersion: String by project
 
 dependencies {
@@ -39,7 +40,8 @@ dependencies {
 
     implementation("net.dankito.utils:favicon-finder:$faviconFinderVersion")
 
-    implementation("net.codinux.log:klf:${klfVersion}")
+    implementation("net.codinux.log:klf:$klfVersion")
+    implementation("net.codinux.log:quarkus-log-formatter:$logFormatterVersion")
     implementation("net.codinux.log:quarkus-loki-log-appender:$lokiLoggerVersion")
     implementation("net.codinux.log.kubernetes:codinux-kubernetes-info-retriever:$lokiLoggerVersion")
 
